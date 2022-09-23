@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+  httpd:
+    container_name: "app-web"
+    build:
+      context: ./docker
+      dockerfile: web.dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./application:/app
+
+  mysql:
+    image: mysql:8.0.30
+    container_name: "app-mysql"
+    ports:
+        - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: ''
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'True'
+    volumes:
+        - ./docker/data/mysql:/var/lib/mysql
+        - ./docker/confs/mysql/my.cnf:/etc/mysql/conf.d/mycustom.cnf
+
+  rabbit:
+    container_name: "app-rabbit"
+    build:
+      context: ./docker
+      dockerfile: rabbitmq.dockerfile
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  pma:
+    image: phpmyadmin
+    container_name: "app-pma"
+    ports:
+      - 8081:80
+    environment:
+      - PMA_ARBITRARY=1
+
+  mhog:
+    image: mailhog/mailhog
+    container_name: "app-mailhog"
+    ports:
+      - 8025:8025
+      - 1025:1025

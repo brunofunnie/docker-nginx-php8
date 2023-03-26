@@ -9,6 +9,7 @@ This web/http container doesn't have SSL enabled
 - MySQL 8.0.30
 - RabbitMQ 3.9.20 with Management Panel enabled
 - Mailhog SMTP Mailtrap
+- Direnv (see more below)
 
 ## Info
 

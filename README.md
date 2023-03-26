@@ -5,10 +5,22 @@
 This web/http container doesn't have SSL enabled
 
 - NGINX
-- PHP 8.1.10
+- PHP 8.1.10 (with XDebug 3)
 - MySQL 8.0.30
 - RabbitMQ 3.9.20 with Management Panel enabled
 - Mailhog SMTP Mailtrap
+
+## Info
+
+The nginx-site.conf file is configured to receive a Laravel Application, so if you want something different like a Wordpress or another framework, modified it for your needs.
+
+## XDebug
+
+For using XDebug your must support debugging, this setup was tested with Visual Studio Code.
+
+    ℹ If you're going to use VSCode make sure to install the PHP Debug extension
+
+After installing PHP Debug extension you're pratically good to go, the IP for the XDebug it configured automatically after the first build and execution. But if you want to pass your HOST ip address to the XDebug 'client_host' parameter we already have a solution prepared. You just need to install 'direnv' package on linux/mac, type 'direnv allow' inside this project directory and that's it.
 
 ## URLs
 

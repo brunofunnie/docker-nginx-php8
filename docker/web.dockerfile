@@ -1,4 +1,4 @@
-FROM php:8.1.10-fpm
+FROM php:8.1.17-fpm
 
 RUN apt-get update -y \
     && apt-get install -y nginx

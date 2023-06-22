@@ -5,9 +5,9 @@
 This web/http container doesn't have SSL enabled
 
 - NGINX
-- PHP 8.1.17 (with XDebug 3, Redis)
+- PHP 8.1.20 (with XDebug 3, Redis)
 - MySQL 8.0.30
-- RabbitMQ 3.9.20 with Management Panel enabled
+- Redis 7.0.11 with password
 - Mailhog SMTP Mailtrap
 - Direnv (see more below)
 

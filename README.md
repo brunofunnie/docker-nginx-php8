@@ -31,8 +31,5 @@ Localhost
 PhpMyAdmin
 [http://127.0.0.1:8081](http://127.0.0.1:8081)
 
-RabbitMQ Management Panel
-[http://127.0.0.1:15672](http://127.0.0.1:15672)
-
 Mailhog
 [http://127.0.0.1:8025](http://127.0.0.1:8025)

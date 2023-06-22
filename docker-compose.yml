@@ -1,49 +1,53 @@
 version: "3.9"
 services:
   httpd:
-    container_name: "app-web"
+    container_name: app-web
     build:
       context: ./docker
       dockerfile: web.dockerfile
     ports:
-      - "8080:80"
+      - 8080:80
     environment:
-      - XDEBUG_CONFIG=client_host=${DOCKER_HOST_IP:-} client_port=9010
+      XDEBUG_CONFIG: client_host=${DOCKER_HOST_IP:-} client_port=9010
     volumes:
       - ./application:/app
 
   mysql:
+    container_name: app-mysql
     image: mysql:8.0.30
-    container_name: "app-mysql"
     ports:
-        - "3306:3306"
+        - 3306:3306
     environment:
         MYSQL_ROOT_PASSWORD: ''
         MYSQL_ALLOW_EMPTY_PASSWORD: 'True'
     volumes:
-        - ./docker/data/mysql:/var/lib/mysql
+        - app_mysql:/var/lib/mysql
         - ./docker/confs/mysql/my.cnf:/etc/mysql/conf.d/mycustom.cnf
 
-  rabbit:
-    container_name: "app-rabbit"
-    build:
-      context: ./docker
-      dockerfile: rabbitmq.dockerfile
-    ports:
-      - 5672:5672
-      - 15672:15672
-
   pma:
+    container_name: app-pma
     image: phpmyadmin
-    container_name: "app-pma"
     ports:
       - 8081:80
     environment:
       - PMA_ARBITRARY=1
 
+  redis:
+    container_name: app-redis
+    image: redis:7.0.11-alpine
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass redis
+    volumes:
+      - app_redis:/data
+
   mhog:
+    container_name: app-mailhog
     image: mailhog/mailhog
-    container_name: "app-mailhog"
     ports:
       - 8025:8025
       - 1025:1025
+
+volumes:
+  app_mysql:
+  app_redis:

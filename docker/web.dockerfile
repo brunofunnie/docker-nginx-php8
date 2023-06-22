@@ -21,7 +21,8 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-enable redis xdebug imagick opcache \
     && apt-get purge -y --auto-remove
 
-COPY ../confs/php/* /usr/local/etc/php/conf.d/
+COPY ../confs/php/ini/* /usr/local/etc/php/conf.d/
+COPY ../confs/php/fpm/* /usr/local/etc/php-fpm.d/
 COPY ../confs/nginx/nginx-site.conf /etc/nginx/sites-enabled/default
 COPY --chmod=777 ../confs/entrypoint.sh /etc/entrypoint.sh
 

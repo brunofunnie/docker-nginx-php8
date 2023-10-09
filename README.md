@@ -5,10 +5,10 @@
 This web/http container doesn't have SSL enabled
 
 - NGINX
-- PHP 8.1.20 (with XDebug 3, Redis)
-- MySQL 8.0.30
-- Redis 7.0.11 with password
-- Mailhog SMTP Mailtrap
+- PHP 8.2.9 (with XDebug 3, Redis, Swoole, Imagick and more)
+- MySQL 8.1
+- Redis 7.2.0 with password
+- Mailpit SMTP Mailtrap
 - Direnv (see more below)
 
 ## Info
